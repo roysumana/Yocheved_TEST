@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Modules\Student\Http\Controllers\StudentController;
 use App\Modules\Report\Http\Controllers\ReportController;
+use App\Modules\Session\Http\Controllers\SessionController;
 use App\Modules\Template\Http\Controllers\TemplateController;
-use App\Modules\Student\Http\Controllers\StudentSessionController;
 
 Route::get('/', function () {
     if(Auth::check()){
@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('student', StudentController::class);
-    Route::resource('session', StudentSessionController::class);
+    Route::resource('session', SessionController::class);
     Route::resource('template', TemplateController::class);
     Route::resource('report', ReportController::class);
 });

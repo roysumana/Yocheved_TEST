@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('student_availabilities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id')->index();
+            $table->unsignedBigInteger('student_id')->index('stu_avl_index');
             $table->boolean('monday')->default(0);
             $table->boolean('tuesday')->default(0);
             $table->boolean('wednesday')->default(0);
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('saturday')->default(0);
             $table->boolean('sunday')->default(0);
             $table->timestamps();
-            $table->foreign('student_id')->on('students')->references('id')->cascadeOnDelete();
+            $table->foreign('student_id', 'stu_avl_foreign')->on('students')->references('id')->cascadeOnDelete();
         });
     }
 

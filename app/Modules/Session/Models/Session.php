@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\Student\Models;
+namespace App\Modules\Session\Models;
 
 use App\Modules\Student\Models\Student;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class StudentSession extends Model
+class Session extends Model
 {
 
     const TYPE_ONE_TIME = 'one-time';

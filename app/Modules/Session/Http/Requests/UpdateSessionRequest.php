@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Student\Http\Requests;
+namespace App\Modules\Session\Http\Requests;
 
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;

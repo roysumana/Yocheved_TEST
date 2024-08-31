@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Student\Http\Requests;
+namespace App\Modules\Session\Http\Requests;
 
+use App\Modules\Session\Models\Session;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Modules\Student\Models\StudentSession;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class CreateSessionRequest extends FormRequest
@@ -41,7 +41,7 @@ class CreateSessionRequest extends FormRequest
             'start_time' => ['required', 'string', 'session_date_check', 'session_date_availability_check'],
             'end_time' => ['sometimes', 'nullable'],
             'duration' => ['required', 'integer', 'min:1', 'max:15'],
-            'type' => ['required', 'string', 'max:10', Rule::in(StudentSession::sessionTypes())],
+            'type' => ['required', 'string', 'max:10', Rule::in(Session::sessionTypes())],
         ];
     }
 }

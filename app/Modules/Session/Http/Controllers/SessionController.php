@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Modules\Student\Http\Controllers;
+namespace App\Modules\Session\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use App\Modules\Session\Http\Requests\CreateSessionRequest;
+use App\Modules\Session\Http\Requests\UpdateSessionRequest;
+use App\Modules\Session\Models\Session;
 use App\Modules\Student\Models\Student;
-use App\Modules\Student\Models\StudentSession;
-use App\Modules\Student\Models\StudentAvailability;
-use App\Modules\Student\Http\Requests\CreateSessionRequest;
-use App\Modules\Student\Http\Requests\UpdateSessionRequest;
 
-class StudentSessionController extends Controller
+class SessionController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,14 +26,14 @@ class StudentSessionController extends Controller
     public function index()
     {
         return view('student.session.index', [
-            'sessions' => StudentSession::with(['Student'])->paginate()
+            'sessions' => Session::with(['Student'])->paginate()
         ]);
     }
 
     public function create()
     {
         return view('student.session.create', [
-            'types' => StudentSession::sessionTypes(),
+            'types' => Session::sessionTypes(),
             'students' => Student::get(),
         ]);
     }
@@ -43,7 +41,7 @@ class StudentSessionController extends Controller
     public function edit($id)
     {
         return view('student.session.edit', [
-            'session' => StudentSession::find($id),
+            'session' => Session::find($id),
         ]);
     }
 
@@ -55,7 +53,7 @@ class StudentSessionController extends Controller
     public function store(CreateSessionRequest $request)
     {
         $data = $request->validated();
-        $session = StudentSession::create($data);
+        $session = Session::create($data);
 
         return redirect('session');
     }
@@ -65,7 +63,7 @@ class StudentSessionController extends Controller
      *
      * @param UpdateSessionRequest $request
      */
-    public function update(UpdateSessionRequest $request, StudentSession $session)
+    public function update(UpdateSessionRequest $request, Session $session)
     {
         $data = $request->validated();
         $session = $session->update($data);

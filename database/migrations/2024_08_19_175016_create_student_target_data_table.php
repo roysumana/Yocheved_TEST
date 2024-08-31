@@ -12,13 +12,13 @@ return new class extends Migration {
     {
         Schema::create('student_target_data', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('student_id')->index('stu_tar_id_index');
             $table->date('start_date');
             $table->date('end_date');
             $table->unsignedInteger('target');
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete();
+            $table->foreign('student_id', 'stu_tar_id_foreign')->references('id')->on('students')->cascadeOnDelete();
         });
     }
 
